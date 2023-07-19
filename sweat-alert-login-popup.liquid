@@ -1,0 +1,132 @@
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% comment %}
+  https://miajewelsmiami.com/
+{% endcomment %}
+{% unless customer %}
+<script>
+  window.forgetForm = function() {
+  	Swal.fire({
+  title: '<strong>Recover Password</strong>',
+  html:
+    `<div class="PageContent PageContent--fitScreen PageContent--extraNarrow">
+<form method="post" action="/account/recover" id="recover_customer_password" accept-charset="UTF-8" name="recover" class="Form Form--spacingTight" style="display: block; visibility: inherit; opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);" onsubmit="window.Shopify.recaptchaV3.addToken(this, &quot;recover_customer_password&quot;); return false;"><input type="hidden" name="form_type" value="recover_customer_password"><input type="hidden" name="utf8" value="✓"><header class="Form__Header">
+          <h1 class="Form__Title Heading u-h1">Recover password</h1><p class="Form__Legend">Please enter your email:</p></header><div class="Form__Item">
+          <input type="email" class="Form__Input" name="email" required="required" placeholder="Email" aria-label="Email" autofocus="">
+          <label class="Form__FloatingLabel">Email</label>
+        </div>
+
+        <button type="submit" class="Form__Submit Button Button--primary Button--full">Recover</button>
+
+       </form>
+  </div>`,
+  showCloseButton: true,
+      showConfirmButton: false,
+  showCancelButton: false,
+  focusConfirm: false
+})
+  }
+  window.registerForm = function() {
+
+  	Swal.fire({
+  title: '<strong>Register</strong>',
+  html:
+    `<div class="PageContent PageContent--fitScreen PageContent--extraNarrow">
+<form method="post" action="/account" id="create_customer" accept-charset="UTF-8" name="create_customer" class="Form Form--spacingTight"><input type="hidden" name="form_type" value="create_customer"><input type="hidden" name="utf8" value="✓"><header class="Form__Header">
+          <h1 class="Form__Title Heading u-h1">Wholesale Account Registration</h1>
+          <p class="Form__Legend">Fill in the information below:</p>
+        </header><div class="Form__Item">
+          <input type="text" class="Form__Input" name="customer[first_name]" aria-label="First name" placeholder="First name" autofocus="">
+          <label class="Form__FloatingLabel">First name</label>
+        </div>
+
+        <div class="Form__Item">
+          <input type="text" class="Form__Input" name="customer[last_name]" aria-label="Last name" placeholder="Last name">
+          <label class="Form__FloatingLabel">Last name</label>
+        </div>
+
+        <div class="Form__Item">
+          <input type="email" class="Form__Input" name="customer[email]" aria-label="Email" placeholder="Email" required="required">
+          <label class="Form__FloatingLabel">Email</label>
+        </div>
+
+        <div class="Form__Item">
+          <input type="password" class="Form__Input" name="customer[password]" aria-label="Password" placeholder="Password" required="required">
+          <label class="Form__FloatingLabel">Password</label>
+        </div>
+
+        <button type="submit" class="Form__Submit Button Button--primary Button--full">Create my account</button></form></div>`,
+  showCloseButton: true,
+      showConfirmButton: false,
+  showCancelButton: false,
+  focusConfirm: false
+})
+    
+  }
+  
+document.querySelector('[data-open-account]').addEventListener('click', e => {
+  e.preventDefault();
+	Swal.fire({
+  title: '<strong>Account</strong>',
+  html:
+    `<div class="PageContent PageContent--fitScreen PageContent--extraNarrow"><form method="post" action="/account/recover" accept-charset="UTF-8"><input type="hidden" name="form_type" value="recover_customer_password"><input type="hidden" name="utf8" value="✓"></form><form method="post" action="/account/login" id="customer_login" accept-charset="UTF-8" name="login" class="Form Form--spacingTight" style="display: block"><input type="hidden" name="form_type" value="customer_login"><input type="hidden" name="utf8" value="✓"><header class="Form__Header">
+          <h1 class="Form__Title Heading u-h1">Retailer/Reseller Login</h1>
+          <p class="Form__Legend">Login To View Prices:</p>
+        </header><div class="Form__Item">
+          <input type="email" class="Form__Input" name="customer[email]" required="required" placeholder="Email" aria-label="Email" autofocus="">
+          <label class="Form__FloatingLabel">Email</label>
+        </div>
+
+        <div class="Form__Item">
+          <input type="password" class="Form__Input" name="customer[password]" required="required" placeholder="Password" aria-label="Password">
+          <label class="Form__FloatingLabel">Password</label>
+          <button type="button" class="Form__ItemHelp Link Link--primary" onclick="window.forgetForm(this)">Forgot password?</button>
+        </div>
+
+        <button type="submit" class="Form__Submit Button Button--primary Button--full">Login</button>
+
+        <div class="Form__Hint Form__Hint--center">
+          <span class="Text--subdued">Don't have an account?</span>
+          <button onclick="window.registerForm(this)" class="Link Link--secondary">Create yours for free!</button>
+        </div></form></div>`,
+  showCloseButton: true,
+      showConfirmButton: false,
+  showCancelButton: false,
+  focusConfirm: false
+})
+});
+ 
+  {% if request.page_type == 'index'%}
+  document.addEventListener("DOMContentLoaded", function() {
+ Swal.fire({
+  title: '<strong>Account</strong>',
+  html:
+    `<div class="PageContent PageContent--fitScreen PageContent--extraNarrow"><form method="post" action="/account/recover" accept-charset="UTF-8"><input type="hidden" name="form_type" value="recover_customer_password"><input type="hidden" name="utf8" value="✓"></form><form method="post" action="/account/login" id="customer_login" accept-charset="UTF-8" name="login" class="Form Form--spacingTight" style="display: block"><input type="hidden" name="form_type" value="customer_login"><input type="hidden" name="utf8" value="✓"><header class="Form__Header">
+          <h1 class="Form__Title Heading u-h1">Retailer/Reseller Login</h1>
+          <p class="Form__Legend">Login To View Prices:</p>
+        </header><div class="Form__Item">
+          <input type="email" class="Form__Input" name="customer[email]" required="required" placeholder="Email" aria-label="Email" autofocus="">
+          <label class="Form__FloatingLabel">Email</label>
+        </div>
+
+        <div class="Form__Item">
+          <input type="password" class="Form__Input" name="customer[password]" required="required" placeholder="Password" aria-label="Password">
+          <label class="Form__FloatingLabel">Password</label>
+          <button type="button" class="Form__ItemHelp Link Link--primary" onclick="window.forgetForm(this)">Forgot password?</button>
+        </div>
+
+        <button type="submit" class="Form__Submit Button Button--primary Button--full">Login</button>
+
+        <div class="Form__Hint Form__Hint--center">
+          <span class="Text--subdued">Don't have an account?</span>
+          <button onclick="window.registerForm(this)" class="Link Link--secondary">Create yours for free!</button>
+        </div></form></div>`,
+  showCloseButton: true,
+      showConfirmButton: false,
+  showCancelButton: false,
+  focusConfirm: false
+})
+});
+  {% endif %}
+  
+</script>
+{% endunless %}
